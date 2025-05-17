@@ -7,4 +7,22 @@ function start() {
 recognition.onresult = function(event) {
 let content = event.results[0][0].transcript;
 document.getElementById("textbox").innerHTML = content;
+speak();
 }
+
+function speak(){
+    let synth = window.speechSynthesis;
+    let speakData = document.getElementById("textbox").value;
+    let utterThis = new SpeechSynthesisUtterance(speakData);
+    synth.speak(utterThis);
+    Webcam.attach(camera);
+}
+
+Webcam.set({
+    width: 360,
+    height: 250,
+    image_format: 'png',
+    png_quality: 90
+});
+
+
